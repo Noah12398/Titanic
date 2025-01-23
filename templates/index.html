@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Titanic Survival Prediction</title>
+    <style>
+      body {
+            font-family: Arial, sans-serif;
+            background: url('{{ url_for("static", filename="TITANIC2.jpg") }}') no-repeat center center fixed;
+            background-size: cover;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            overflow: auto;
+        }
+
+        .container {
+            background: rgba(0, 0, 0, 0.6); /* Add transparency for better contrast */
+            color: #fff; /* White text for better readability */
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5);
+            width: 100%;
+            max-width: 400px;
+            text-align: center;
+        }
+
+        h1 {
+            font-size: 26px;
+            margin-bottom: 20px;
+        }
+
+        label {
+            font-weight: bold;
+            display: block;
+            margin: 10px 0 5px;
+            color: #ffffff;
+        }
+
+        input,
+        select {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            font-size: 16px;
+            margin-bottom: 15px;
+            background-color: rgba(255, 255, 255, 0.8); /* Slightly transparent for readability */
+        }
+
+        input[type="submit"] {
+            background-color: #4facfe;
+            color: white;
+            font-size: 18px;
+            border: none;
+            cursor: pointer;
+            transition: background 0.3s ease;
+        }
+
+        input[type="submit"]:hover {
+            background-color: #00c6ff;
+        }
+
+        .result {
+            margin-top: 20px;
+            font-size: 20px;
+            font-weight: bold;
+            padding: 15px;
+            border-radius: 5px;
+            background-color: #f4f4f4;
+            color: #333;
+        }
+
+        .result.survived {
+            color: #2ecc71;
+            border: 2px solid #2ecc71;
+        }
+
+        .result.not-survived {
+            color: #e74c3c;
+            border: 2px solid #e74c3c;
+        }
+
+        footer {
+            margin-top: 20px;
+            font-size: 14px;
+            color: #fff; /* Light footer text */
+        }
+
+        .form-group {
+            text-align: left; /* Align labels and inputs */
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <h1>Titanic Survival Prediction</h1>
+       <form action="/" method="post">
+    <div class="form-group">
+        <label for="pclass">Pclass:</label>
+        <input type="number" id="pclass" name="pclass" required min="1" max="3">
+    </div>
+
+    <div class="form-group">
+        <label for="age">Age:</label>
+        <input type="number" step="any" id="age" name="age" required min="0">
+    </div>
+
+    <div class="form-group">
+        <label for="sbsp">SibSp (Siblings/Spouses Aboard):</label>
+        <input type="number" id="sbsp" name="sbsp" required min="0">
+    </div>
+
+    <div class="form-group">
+        <label for="parch">Parch (Parents/Children Aboard):</label>
+        <input type="number" id="parch" name="parch" required min="0">
+    </div>
+
+    <div class="form-group">
+        <label for="fare">Fare:</label>
+        <input type="number" step="any" id="fare" name="fare" required min="0">
+    </div>
+
+    <div class="form-group">
+        <label for="sex">Sex:</label>
+        <select id="sex" name="sex" required>
+            <option value="Male">Male</option>
+            <option value="Female">Female</option>
+        </select>
+    </div>
+
+    <div class="form-group">
+        <label for="port">Embarked:</label>
+        <select id="port" name="port" required>
+            <option value="C">Cherbourg</option>
+            <option value="Q">Queenstown</option>
+            <option value="S">Southampton</option>
+        </select>
+    </div>
+
+    <input type="submit" value="Predict">
+</form>
+
+        {% if prediction %}
+        <div class="result {% if prediction == 'Survived' %}survived{% else %}not-survived{% endif %}">
+            Prediction: {{ prediction }}
+        </div>
+
+        <img id="survivalVideo" src="{{ url_for('static', filename='LaZX.gif') }}" alt="Survived"
+            style="display:none;" />
+
+        <img id="notSurvivalGif" src="{{ url_for('static', filename='jT6.gif') }}" alt="Not Survived"
+            style="display:none;" />
+
+        <script>
+            var prediction = "{{ prediction }}";
+            if (prediction === "Survived") {
+                document.getElementById("survivalVideo").style.display = "block";
+            } else if (prediction === "Did not Survive") {
+                document.getElementById("notSurvivalGif").style.display = "block";
+            }
+        </script>
+        {% endif %}
+
+        <footer>Made with ❤️ by Titanic ML Team</footer>
+    </div>
+</body>
+
+</html>
