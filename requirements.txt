@@ -68,6 +68,7 @@ jupyterlab_pygments==0.3.0
 jupyterlab_server==2.27.3
 kiwisolver==1.4.7
 libmambapy @ file:///croot/mamba-split_1714483352891/work/libmambapy
+mangum==0.19.0
 MarkupSafe==3.0.2
 matplotlib==3.9.3
 matplotlib-inline==0.1.7
