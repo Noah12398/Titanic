@@ -27,8 +27,9 @@
             padding: 40px;
             border-radius: 10px;
             box-shadow: 0 4px 10px rgba(0, 0, 0, 0.7);
-            max-width: 420px;
+            max-width: 500px;
             text-align: center;
+            box-sizing: border-box;
         }
 
         h1 {
@@ -53,16 +54,21 @@
         }
 
         input, select {
-            width: 100%;
-            padding: 12px;
-            border: 2px solid #f4c842;
-            border-radius: 5px;
-            font-size: 16px;
-            background-color: rgba(255, 255, 255, 0.9);
-            box-shadow: 0 0 8px rgba(244, 200, 66, 0.8);
-            margin-bottom: 15px;
-            outline: none;
-        }
+    width: 100%;
+    padding: 12px;
+    border: 2px solid #f4c842;
+    border-radius: 5px;
+    font-size: 16px;
+    background-color: rgba(255, 255, 255, 0.9);
+    box-shadow: 0 0 8px rgba(244, 200, 66, 0.8);
+    margin-bottom: 15px;
+    outline: none;
+    display: block; /* Ensures the input is a block-level element */
+    margin-left: auto; /* Centers horizontally */
+    margin-right: auto; /* Centers horizontally */
+    box-sizing: border-box; /* Includes padding and border in width calculation */
+    height: 50px; /* Set consistent height */
+}
 
         input[type="submit"] {
             background: linear-gradient(to right, #f4c842, #d49f3a);
